@@ -51,6 +51,8 @@ const Disperse = () => {
             } else {
                 setError({ code: 'notValid', array: errorArray });
             }
+        }else{
+            setError({ code: 'notValidInput', array: array });
         }
     };
 
@@ -189,10 +191,10 @@ const Disperse = () => {
                         </div>
                     </div>
                 }
-                {error?.code === "notValid" &&
+                {(error?.code === "notValid"|| error?.code === "notValidInput") &&
                     <div className='border rounded-lg border-red-600 px-4 py-2 my-5'>
                         {error?.array?.map((item) => {
-                            return <><span className='text-red-600'>Line no {item?.index+1} Amount Wrong</span><br /></>;
+                            return <><span className='text-red-600'>Line no {item?.index+1} {error?.code === "notValidInput" ?`Input Wrong`:`Amount Wrong`}</span><br /></>;
                         })}
                     </div>
                 }
